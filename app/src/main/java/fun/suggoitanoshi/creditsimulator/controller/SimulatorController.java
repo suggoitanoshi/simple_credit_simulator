@@ -119,6 +119,7 @@ public class SimulatorController{
               view.RenderInvalidDownPayment();
               view.RenderPromptDownPayment();
             }
+            break;
           default:
             view.RenderPromptLeader();
         }
