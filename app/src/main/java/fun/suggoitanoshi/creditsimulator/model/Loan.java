@@ -172,15 +172,17 @@ public class Loan{
           || this.downPayment == null) {
         return null;
       }
-      if(this.age == "baru") {
+      if(this.age.equals("baru")) {
         if(this.downPayment < 0.35d*this.totalLoan) {
           return null;
         }
         int currentYear = Year.now().getValue();
-        if(currentYear < this.year || currentYear - this.year > 1){
+        System.out.println(currentYear);
+        System.out.println(this.year);
+        if(currentYear < this.year || (currentYear - this.year) > 1){
           return null;
         }
-      } else if(this.age == "bekas") {
+      } else if(this.age.equals("bekas")) {
         if(this.downPayment < 0.25*this.totalLoan){
           return null;
         }
