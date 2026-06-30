@@ -2,6 +2,7 @@ package fun.suggoitanoshi.creditsimulator.controller;
 
 import fun.suggoitanoshi.creditsimulator.model.Loan;
 import fun.suggoitanoshi.creditsimulator.model.Menu;
+import fun.suggoitanoshi.creditsimulator.repository.LoanRepository;
 import fun.suggoitanoshi.creditsimulator.view.CLI;
 
 public class SimulatorController{
@@ -9,10 +10,12 @@ public class SimulatorController{
   private Loan.Builder loanBuilder;
   private Menu menuModel;
   private CLI view;
+  private LoanRepository repository;
 
-  public SimulatorController(CLI view, Menu menuModel){
+  public SimulatorController(CLI view, Menu menuModel, LoanRepository repository){
     loanModel = null;
     loanBuilder = new Loan.Builder();
+    this.repository = repository;
     this.menuModel = menuModel;
     this.view = view;
   }
@@ -30,7 +33,8 @@ public class SimulatorController{
           view.RenderCalculation(loanModel);
         view.RenderMenu();
       } else if(command.equals("load")){
-        // TODO: JSON Web Service
+        loanModel = repository.GetLoanFrom("https://mocki.io/v1/22072efd-9006-47e7-9a9b-34a53de59b17");
+        view.RenderCalculation(loanModel);
         view.RenderMenu();
       } else if(command.equals("exit")){
         view.RenderExit();

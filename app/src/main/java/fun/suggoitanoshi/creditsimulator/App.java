@@ -6,16 +6,17 @@ import java.util.Scanner;
 
 import fun.suggoitanoshi.creditsimulator.controller.SimulatorController;
 import fun.suggoitanoshi.creditsimulator.model.Menu;
+import fun.suggoitanoshi.creditsimulator.repository.LoanRepository;
 import fun.suggoitanoshi.creditsimulator.view.CLI;
 
 public class App {
   public static void main(String[] args){
     CLI cli = new CLI();
     Menu menu = new Menu();
-    SimulatorController controller = new SimulatorController(cli, menu);
+    LoanRepository repository = new LoanRepository();
+    SimulatorController controller = new SimulatorController(cli, menu, repository);
     Scanner scanner = null;
-    System.out.println(args.length);
-    System.out.println(args[0]);
+    LoanRepository r = new LoanRepository();
     if(args.length == 1){
       // input from file
       try{

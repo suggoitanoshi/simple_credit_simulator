@@ -3,13 +3,20 @@ package fun.suggoitanoshi.creditsimulator.model;
 import java.time.Year;
 import java.util.ArrayList;
 import java.util.List;
+import com.google.gson.annotations.SerializedName;
 
 public class Loan{
+  @SerializedName("vehicleType")
   private String type;
+  @SerializedName("vehicleCondition")
   private String age;
+  @SerializedName("vehicleYear")
   private Integer year;
+  @SerializedName("totalLoanAmount")
   private Integer totalLoan;
+  @SerializedName("loanTenure")
   private Integer tenor;
+  @SerializedName("downPayment")
   private Integer downPayment;
 
   private Loan(Builder builder){
@@ -41,7 +48,7 @@ public class Loan{
   }
 
   public Double getBaseInterest(){
-    if(type == "motor"){
+    if(type.toLowerCase() == "motor"){
       return 9.0d;
     } else {
       return 8.0d;
@@ -81,6 +88,7 @@ public class Loan{
     }
     return totalPaymentPerYear;
   }
+
   public List<Double> getTotalPaymentPerMonth(){
     List<Double> totalPaymentPerYear = getTotalPaymentPerYear();
     for(int i = 0; i < totalPaymentPerYear.size(); i++){
