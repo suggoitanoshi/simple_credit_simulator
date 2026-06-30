@@ -9,6 +9,7 @@ public class CLI {
     System.out.println("Credit Simulator");
     System.out.println("mulai: mulai input simulasi kredit");
     System.out.println("menu: menu ini");
+    System.out.println("status: tampilkan status kredit");
     System.out.println("hitung: tampilkan perhitungan");
     System.out.println("load: ambil data dari API");
     System.out.println("exit: keluar dari credit simulator");
@@ -67,6 +68,10 @@ public class CLI {
     System.out.println("Jumlah DP tidak valid!");
   }
 
+  public void RenderUnknownError(){
+    System.out.println("error, kembali ke menu awal.");
+  }
+
   public void RenderCalculation(Loan loan){
     List<Double> interestPerYear = loan.getInterestPerYear();
     List<Double> totalPaymentPerYear = loan.getTotalPaymentPerYear();
@@ -74,8 +79,21 @@ public class CLI {
     System.out.println("Hasil perhitungan kredit:");
 
     for(int i = 0; i < loan.getTenor(); i++){
-      System.out.printf("Tahun %d: Rp.%.2f, Rate: %.2f\n", i+1, totalPaymentPerYear.get(i), interestPerYear.get(i));
+      System.out.printf("Tahun %d: Rp.%.2f, Rate: %.2f%%\n", i+1, totalPaymentPerYear.get(i), interestPerYear.get(i));
     }
+  }
+
+  public void RenderLoan(Loan loan){
+    System.out.printf("Tipe kendaraan: %s\n", loan.getType());
+    System.out.printf("Status kendaraan: %s\n", loan.getAge());
+    System.out.printf("Tahun kendaraan: %d\n", loan.getYear());
+    System.out.printf("Tenor: %d\n", loan.getTenor());
+    System.out.printf("Jumlah pinjaman: %d\n", loan.getTotalLoan());
+    System.out.printf("Jumlah DP: %d\n", loan.getDownPayment());
+  }
+
+  public void RenderNoValidLoan(){
+    System.out.println("Kredit tidak valid!");
   }
 
   public void RenderExit(){

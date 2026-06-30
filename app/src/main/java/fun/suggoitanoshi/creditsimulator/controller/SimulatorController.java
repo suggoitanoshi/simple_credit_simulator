@@ -28,6 +28,13 @@ public class SimulatorController{
         menuModel.transitionTo(Menu.MenuState.CREDIT_SIMULATE_TYPE);
         view.RenderPromptLeader();
         view.RenderPromptType();
+      } else if(command.equals("status")){
+        if(loanModel != null){
+          view.RenderLoan(loanModel);
+        } else {
+          view.RenderNoValidLoan();
+        }
+        view.RenderMenu();
       } else if(command.equals("hitung")){
         if(loanModel != null)
           view.RenderCalculation(loanModel);
@@ -105,11 +112,11 @@ public class SimulatorController{
             try {
               int dp = Integer.parseInt(command);
               loanBuilder.setDownPayment(dp);
-              menuModel.transitionTo(Menu.MenuState.MAIN_MENU);
               loanModel = loanBuilder.build();
-              if(loanModel == null){
-                view.RenderInvalidDownPayment();
-                view.RenderPromptDownPayment();
+              if(loanModel == null){ //???
+                menuModel.transitionTo(Menu.MenuState.MAIN_MENU);
+                view.RenderUnknownError();
+                view.RenderMenu();
               } else {
                 menuModel.transitionTo(Menu.MenuState.MAIN_MENU);
                 view.RenderCalculation(loanModel);

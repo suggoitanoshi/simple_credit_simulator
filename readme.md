@@ -121,6 +121,18 @@ load: ambil data dari API
 exit: keluar dari credit simulator
 ```
 
+Lastly, you can try using status to get the data you have inputted.
+
+```
+Tipe kendaraan: Mobil
+Status kendaraan: Baru
+Tahun kendaraan: 2025
+Tenor: 6
+Jumlah pinjaman: 1000000000
+Jumlah DP: 500000000
+
+```
+
 Exit just exits the app.
 
 ```
