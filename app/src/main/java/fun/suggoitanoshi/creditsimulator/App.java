@@ -1,11 +1,21 @@
 package fun.suggoitanoshi.creditsimulator;
 
-public class App {
-  public String getGreeting(){
-    return "Hello, World!";
-  }
+import java.util.Scanner;
 
+import fun.suggoitanoshi.creditsimulator.controller.SimulatorController;
+import fun.suggoitanoshi.creditsimulator.model.Menu;
+import fun.suggoitanoshi.creditsimulator.view.CLI;
+
+public class App {
   public static void main(String[] args){
-    System.out.println(new App().getGreeting());
+    CLI cli = new CLI();
+    Menu menu = new Menu();
+    SimulatorController controller = new SimulatorController(cli, menu);
+    Scanner scanner = new Scanner(System.in);
+    cli.RenderMenu();
+    while(menu.getState() != Menu.MenuState.EXIT && scanner.hasNextLine()){
+      controller.HandleCommand(scanner.nextLine());
+    }
+    scanner.close();
   }
 }
